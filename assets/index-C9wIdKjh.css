@@ -3913,3 +3913,119 @@ h6 {
 [data-side=right] .\[\[data-side\=right\]_\&\]\:cursor-e-resize {
     cursor: e-resize
 }
+
+/* override-theme.css — drop-in палитра и пару мелких фиксов */
+/* Подключай ПОСЛЕ твоего большого CSS файла */
+
+:root {
+  /* светлая тема (если вдруг используешь) */
+  --background: 0 0% 98%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 220 16% 20%;            /* глубокий индиго */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 220 16% 96%;
+  --secondary-foreground: 220 16% 20%;
+  --muted: 220 16% 94%;
+  --muted-foreground: 220 10% 42%;
+  --accent: 190 92% 42%;             /* бирюзовый акцент */
+  --accent-foreground: 0 0% 100%;
+  --destructive: 355 74% 54%;
+  --destructive-foreground: 0 0% 100%;
+  --positive: 142 71% 40%;
+  --positive-foreground: 0 0% 100%;
+  --border: 220 16% 88%;
+  --input: 220 16% 92%;
+  --ring: 220 16% 20%;
+  --radius: .5rem;
+
+  /* линии чартов — более контрастные в новой теме */
+  --chart-1: 190 92% 42%;  /* бирюзовый */
+  --chart-2: 270 84% 70%;  /* фиолетовый */
+  --chart-3: 34 100% 60%;  /* апельсин */
+  --chart-4: 160 85% 45%;  /* зелёный */
+  --chart-5: 0 0% 60%;     /* серый */
+  --chart-6: 340 82% 62%;  /* розовый */
+
+  /* сайдбар, если есть */
+  --sidebar-background: 220 16% 99%;
+  --sidebar-foreground: 220 16% 20%;
+  --sidebar-primary: 220 16% 20%;
+  --sidebar-primary-foreground: 0 0% 99%;
+  --sidebar-accent: 220 16% 96%;
+  --sidebar-accent-foreground: 220 16% 20%;
+  --sidebar-border: 220 16% 90%;
+  --sidebar-ring: 220 16% 20%;
+}
+
+/* тёмная вариация темы Ink — включится когда у body есть класс .dark */
+.dark {
+  --background: 224 16% 7%;          /* почти чёрный, без синевы */
+  --foreground: 220 15% 92%;
+  --card: 224 16% 9%;
+  --card-foreground: 220 15% 92%;
+  --popover: 224 16% 9%;
+  --popover-foreground: 220 15% 92%;
+  --primary: 220 16% 92%;
+  --primary-foreground: 224 16% 7%;
+  --secondary: 224 16% 13%;
+  --secondary-foreground: 220 15% 92%;
+  --muted: 224 16% 13%;
+  --muted-foreground: 220 10% 65%;
+  --accent: 190 92% 45%;             /* бирюзовый светится */
+  --accent-foreground: 224 16% 7%;
+  --destructive: 355 74% 56%;
+  --destructive-foreground: 0 0% 100%;
+  --positive: 142 71% 48%;
+  --positive-foreground: 224 16% 7%;
+  --border: 224 16% 18%;
+  --input: 224 16% 18%;
+  --ring: 220 15% 92%;
+
+  --chart-1: 190 92% 56%;
+  --chart-2: 271 83% 72%;
+  --chart-3: 34 100% 64%;
+  --chart-4: 160 85% 55%;
+  --chart-5: 0 0% 72%;
+  --chart-6: 340 82% 68%;
+
+  --sidebar-background: 224 16% 8%;
+  --sidebar-foreground: 220 15% 92%;
+  --sidebar-primary: 220 15% 92%;
+  --sidebar-primary-foreground: 224 16% 8%;
+  --sidebar-accent: 224 16% 14%;
+  --sidebar-accent-foreground: 220 15% 92%;
+  --sidebar-border: 224 16% 16%;
+  --sidebar-ring: 220 15% 92%;
+}
+
+/* лёгкий “упрос” поведений, чтобы всё выглядело чище в новой теме */
+a { color: inherit; text-decoration: none; }
+a:hover { opacity: .9; }
+
+.btn, .chip, .tag {
+  border-radius: calc(var(--radius) - 2px);
+}
+
+/* более читаемые надписи по сетке/гридам/линиям на тёмном фоне */
+.recharts-cartesian-grid line,
+canvas + .end-labels .end-pill {
+  filter: saturate(1.1);
+}
+
+.end-pill.up   { background: hsl(var(--positive)); color: hsl(var(--positive-foreground)); }
+.end-pill.down { background: hsl(var(--destructive)); color: hsl(var(--destructive-foreground)); }
+
+/* мелкий фикс — уберём фиолетовые ссылки по умолчанию в некоторых браузерах */
+a:focus, a:active { outline: none; }
+
+/* кнопки активного таба — чуть ярче в новой теме */
+.tab.active { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+
+/* тени помягче */
+.shadow-sm, .shadow, .shadow-md, .shadow-lg, .shadow-xl {
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
